@@ -1,0 +1,21 @@
+spring:
+ # profiles: local
+  cloud:
+    stream:
+      bindings:
+        tasks:
+          consumer:
+            useNativeEncoding: true
+          destination: tasks
+          contentType: application/json
+      kafka:
+        binder:
+          brokers: localhost:9092
+        bindings:
+          tasks:
+            consumer:
+              configuration:
+                value:
+                  serde: bringg.kafka.stream.deserializers.TaskSerde
+                key:
+                  serializer: org.apache.kafka.common.serialization.StringSerializer

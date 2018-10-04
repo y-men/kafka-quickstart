@@ -1,0 +1,54 @@
+spring.cloud.stream.kafka.streams.binder.configuration.commit.interval.ms: 1000
+#spring.cloud.stream.kafka.streams.binder.configuration:
+
+#  default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#  default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+#  tasks.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#  tasks.value.serde: bringg.kafka.stream.deserializers.TaskSerde
+
+ # default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+ # default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+
+  #default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+
+  #org.apache.kafka.common.serialization.Serdes$StringSerde
+#  spring.json.key.default.type: java.lang.String
+#  spring.json.default.value.type: bringg.kafka.stream.model.Task
+
+#  spring.json.key.tasks.type: java.lang.String
+#  spring.json.tasks.value.type: bringg.kafka.stream.model.Task
+
+ # spring.cloud.stream.kafka.streams.default.consumer
+
+spring.cloud.stream.kafka.streams.defualt.consumer:
+  keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+  useNativeDecoding: true
+  contentType: application/json
+
+spring.cloud.stream.kafka.streams.bindings.tasks.consumer:
+  valueSerde: bringg.kafka.stream.deserializers.TaskSerde
+spring.cloud.stream.kafka.streams.bindings.shifts.consumer:
+  valueSerde: bringg.kafka.stream.deserializers.ShiftsSerde
+
+
+# ---   Application properties --------------
+
+debug: true
+
+#spring.cloud.stream.kafka.streams.timeWindow:
+#  advance-by: 500
+# length: 1000
+
+logging.level:
+  com.github.ymen:   debug
+  kafka: debug
+
+
+
+spring:
+  cloud:
+    stream:
+      kafka:
+        streams:
+          binder:
+            brokers: localhost:9092
