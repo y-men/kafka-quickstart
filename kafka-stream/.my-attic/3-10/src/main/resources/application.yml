@@ -1,0 +1,46 @@
+
+logging.level:
+  root: error
+  bringg: debug
+spring:
+  cloud:
+    stream:
+      kafka:
+        streams:
+          binder:
+            brokers: localhost:9092
+            configuration.commit.interval.ms: 1000
+#            configuration.default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#            configuration.default.value.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+          default:
+            consumer:
+              keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+              useNativeDecoding: true
+              contentType: application/json
+            producer:
+              #keySerde: org.apache.kafka.common.serialization.Serdes$StringSerde
+              useNativeDecoding: true
+              contentType: application/json
+
+          bindings:
+            qstore:
+              useNativeDecoding: true
+              contentType: application/json
+
+            #            out:
+#              consumer:
+#                valueSerde: org.apache.kafka.common.serialization.Serdes$LongSerde
+#              producer:
+#                valueSerde: org.apache.kafka.common.serialization.Serdes$LongSerde
+
+            tasks:
+              consumer:
+                valueSerde: bringg.kafka.stream.deserializers.TaskSerde
+#              producer:
+#                valueSerde: bringg.kafka.stream.deserializers.TaskSerde
+            shifts:
+              consumer:
+                valueSerde: bringg.kafka.stream.deserializers.ShiftsSerde
+#              producer:
+#                valueSerde: bringg.kafka.stream.deserializers.ShiftsSerde
+
